@@ -8,11 +8,20 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Enable CORS for Next.js client
+  // app.enableCors({
+  //   origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  //   credentials: true,
+  //   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  //   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+  // });
+
   app.enableCors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+    origin: [
+      'https://vermillion-fudge-59f2d3.netlify.app', // Your Netlify app URL
+      'http://localhost:3000',                     // Keep local development enabled
+    ],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,                             // Enable if you are using cookies/sessions
   });
 
   // Global API Prefix
