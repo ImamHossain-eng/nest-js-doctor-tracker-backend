@@ -22,6 +22,9 @@ npm run seed
 
 ### 3. Build & Run the Server
 ```bash
+#Install Dependency
+npm install
+
 # Development (with hot-reload)
 npm run start:dev
 
